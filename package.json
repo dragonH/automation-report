@@ -1,0 +1,24 @@
+{
+  "name": "report-automation",
+  "version": "1.0.0",
+  "description": "",
+  "main": "handler.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@types/aws-lambda": "^8.10.41",
+    "@types/puppeteer": "^2.0.0",
+    "aws-sdk": "^2.619.0",
+    "chrome-aws-lambda": "^2.1.1",
+    "moment": "^2.24.0",
+    "puppeteer-core": "^2.1.1",
+    "serverless-dotenv-plugin": "^2.3.2"
+  },
+  "devDependencies": {
+    "puppeteer": "^2.1.1"
+  }
+}

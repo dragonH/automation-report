@@ -1,0 +1,4 @@
+node_modules
+.env.development
+dist
+src/config.ts
