@@ -95,7 +95,7 @@ export const autoReport = async () => {
         await page.focus('#i0116');
         await page.keyboard.type(email);
         await page.click('#idSIButton9');
-        await page.waitFor(1);
+        await page.waitFor(500);
         await page.waitForSelector('#i0118', { timeout: 60000 });
         await page.focus('#i0118');
         await page.keyboard.type(password);
@@ -122,6 +122,7 @@ export const autoReport = async () => {
         await page.waitForSelector('button[title="Submit"]', { timeout: 60000 });
         await page.click('button[title="Submit"]');
         console.log(`[Message]: 成功提交`);
+        await page.waitFor(2000);
         results.succeedResult = await screenAndUploadToS3(user, 'succeed', page);
         console.log(`[Message]: 截圖已儲存 ${results.succeedResult.Location}`);
         await browser.close();
