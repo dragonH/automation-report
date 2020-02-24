@@ -3,7 +3,7 @@ import moment from 'moment';
 import AWS from 'aws-sdk';
 import { Page } from 'puppeteer';
 import { Iresults } from '.';
-import config from './config';
+import cryptoJs, { AES } from 'crypto-js';
 
 const screenAndUploadToS3 = async (
     user: string,
@@ -68,7 +68,8 @@ export const autoReport = async () => {
             email,
             password,
         } = process.env;
-        const url = config.url;
+        const url = AES.decrypt('U2FsdGVkX1+ZEJ08jtLbg9qXw3jNJPz8mlNKLPy5H0p5yD/i8ZRS9rBHNsLkt97rIBv1IoPIf+Qq5I9BhzxennExs9QdeyMSErTUOFhBUHCETutLvtC+uW68y2cgeiNPYhAy9wHrZXOXWLIMorrmBiKraNyOA43hRmWQjjHoyThB4yWcMaoKvUSGeiRNbBCzHMMrARO1YGdYEAfu1VV0Qg==', 'ECV')
+            .toString(cryptoJs.enc.Utf8);
         if (!email || !password || !user) {
             throw new Error('Missing params');
         }
