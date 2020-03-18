@@ -108,6 +108,9 @@ export const autoReport = async () => {
         await page.waitForSelector('input[value="辦公室 (ECV office)"]', { timeout: 60000 });
         await page.click('input[value="辦公室 (ECV office)"]');
         console.log(`[Message]: 選擇在 辦公室 (ECV office)`);
+        await page.waitForSelector('input[value="E3 三重7樓辦公室 (TW Sanchong office 7F)"]', { timeout: 60000 });
+        await page.click('input[value="E3 三重7樓辦公室 (TW Sanchong office 7F)"]');
+        console.log(`[Message]: 選擇在 E3 三重7樓辦公室 (TW Sanchong office 7F)`);
         results.placeResult = await screenAndUploadToS3(user, 'place', page);
         console.log(`[Message]: 截圖已儲存 ${results.placeResult.Location}`);
         await page.waitForSelector('.button-content', { timeout: 60000 });
