@@ -74,16 +74,22 @@ export const autoReport = async () => {
             throw new Error('Missing params');
         }
         console.log(`
-    ********    *******   *       *
-    *          *           *     *
-    ********  *             *   *
-    *          *             * *
-    ********    *******       *
+        #######  #####  #     #
+        #       #     # #     #
+        #       #       #     #
+        #####   #       #     #
+        #       #        #   #
+        #       #     #   # #
+        #######  #####     #
         `);
         console.log(`[Message]: Start.`);
         const browser = await puppeteer.launch({
-            args,
+            args: [
+                ...args,
+                '--lang=en-US',
+            ],
             executablePath: await executablePath,
+            headless: false,
         });
         console.log(`[Message]: Browser ready.`);
         page = (await browser.pages())[0] || await browser.newPage()
@@ -108,9 +114,9 @@ export const autoReport = async () => {
         await page.waitForSelector('input[value="辦公室 (ECV office)"]', { timeout: 60000 });
         await page.click('input[value="辦公室 (ECV office)"]');
         console.log(`[Message]: 選擇在 辦公室 (ECV office)`);
-        await page.waitForSelector('input[value="E3 三重7樓辦公室 (TW Sanchong office 7F)"]', { timeout: 60000 });
-        await page.click('input[value="E3 三重7樓辦公室 (TW Sanchong office 7F)"]');
-        console.log(`[Message]: 選擇在 E3 三重7樓辦公室 (TW Sanchong office 7F)`);
+        await page.waitForSelector('input[value="SE5 三重5樓辦公室  (TW Sanchong office 5F)"]', { timeout: 60000 });
+        await page.click('input[value="SE5 三重5樓辦公室  (TW Sanchong office 5F)"]');
+        console.log(`[Message]: 選擇在 SE5 三重5樓辦公室  (TW Sanchong office 5F)`);
         results.placeResult = await screenAndUploadToS3(user, 'place', page);
         console.log(`[Message]: 截圖已儲存 ${results.placeResult.Location}`);
         await page.waitForSelector('.button-content', { timeout: 60000 });
@@ -118,6 +124,9 @@ export const autoReport = async () => {
         await page.waitForSelector('input[value="正常(well)"]', { timeout: 60000 });
         await page.click('input[value="正常(well)"]');
         console.log(`[Message]: 選擇 正常`);
+        await page.waitForSelector('input[value="無 (none)"]', { timeout: 60000 });
+        await page.click('input[value="無 (none)"]');
+        console.log(`[Message]: 選擇 無 (none)`);
         await page.waitForSelector('input[value="否No"]', { timeout: 60000 });
         await page.click('input[value="否No"]');
         console.log(`[Message]: 選擇 否No`);
