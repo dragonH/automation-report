@@ -111,9 +111,11 @@ export const autoReport = async () => {
         console.log(`[Message]: Login successfully.`);
         await page.waitForSelector('input[value="Yes"]', { timeout: 60000 });
         await page.click('input[value="Yes"]');
+        await page.waitFor(2000);
         await page.waitForSelector('input[value="辦公室 (ECV office)"]', { timeout: 60000 });
         await page.click('input[value="辦公室 (ECV office)"]');
         console.log(`[Message]: 選擇在 辦公室 (ECV office)`);
+        await page.waitFor(500);
         await page.waitForSelector('input[value="SE5 三重5樓辦公室  (TW Sanchong office 5F)"]', { timeout: 60000 });
         await page.click('input[value="SE5 三重5樓辦公室  (TW Sanchong office 5F)"]');
         console.log(`[Message]: 選擇在 SE5 三重5樓辦公室  (TW Sanchong office 5F)`);
